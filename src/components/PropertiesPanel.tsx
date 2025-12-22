@@ -4,15 +4,20 @@ import {
   Crop, 
   Download, 
   Info,
-  X
+  Layers,
 } from 'lucide-react';
 import { useEditorStore, Panel } from '@/store/editorStore';
+import { useLayerStore } from '@/store/layerStore';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { ResizeModule } from '@/modules/ResizeModule';
 import { CropModule } from '@/modules/CropModule';
 import { ExportModule } from '@/modules/ExportModule';
 import { InfoModule } from '@/modules/InfoModule';
+import { LayersPanel } from '@/components/LayersPanel';
+import { LayerPropertiesPanel } from '@/components/LayerPropertiesPanel';
+import { AddLayerToolbar } from '@/components/AddLayerToolbar';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface PanelTabProps {
   panel: Panel;
@@ -45,8 +50,9 @@ const PanelTab: React.FC<PanelTabProps> = ({ panel, icon, label }) => {
 
 export const PropertiesPanel: React.FC = () => {
   const { image, activePanel, setActivePanel } = useEditorStore();
+  const { layers } = useLayerStore();
 
-  if (!image) return null;
+  const hasContent = image || layers.length > 0;
 
   const renderPanelContent = () => {
     switch (activePanel) {
@@ -73,19 +79,50 @@ export const PropertiesPanel: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-72 bg-panel border-l border-panel-border">
-      {/* Panel tabs */}
-      <div className="flex items-center gap-1 p-2 border-b border-border overflow-x-auto">
-        <PanelTab panel="resize" icon={<Maximize2 className="w-3.5 h-3.5" />} label="Resize" />
-        <PanelTab panel="crop" icon={<Crop className="w-3.5 h-3.5" />} label="Crop" />
-        <PanelTab panel="export" icon={<Download className="w-3.5 h-3.5" />} label="Export" />
-        <PanelTab panel="info" icon={<Info className="w-3.5 h-3.5" />} label="Info" />
+    <div className="flex flex-col h-full w-80 bg-panel border-l border-panel-border">
+      {/* Layers section - always visible */}
+      <div className="flex-1 flex flex-col min-h-0 border-b border-border">
+        <div className="flex items-center gap-2 px-3 py-2 border-b border-border">
+          <Layers className="w-4 h-4 text-muted-foreground" />
+          <span className="text-xs font-medium">Layers</span>
+        </div>
+        <AddLayerToolbar />
+        <div className="flex-1 min-h-0">
+          <Tabs defaultValue="layers" className="h-full flex flex-col">
+            <TabsList className="mx-2 mt-2 grid grid-cols-2 h-8">
+              <TabsTrigger value="layers" className="text-xs h-7">Layers</TabsTrigger>
+              <TabsTrigger value="properties" className="text-xs h-7">Properties</TabsTrigger>
+            </TabsList>
+            <TabsContent value="layers" className="flex-1 mt-0 overflow-hidden">
+              <LayersPanel />
+            </TabsContent>
+            <TabsContent value="properties" className="flex-1 mt-0 overflow-hidden">
+              <ScrollArea className="h-full">
+                <LayerPropertiesPanel />
+              </ScrollArea>
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
 
-      {/* Panel content */}
-      <div className="flex-1 overflow-hidden">
-        {renderPanelContent()}
-      </div>
+      {/* Tools panel tabs */}
+      {hasContent && (
+        <>
+          <div className="flex items-center gap-1 p-2 border-b border-border overflow-x-auto">
+            <PanelTab panel="resize" icon={<Maximize2 className="w-3.5 h-3.5" />} label="Resize" />
+            <PanelTab panel="crop" icon={<Crop className="w-3.5 h-3.5" />} label="Crop" />
+            <PanelTab panel="export" icon={<Download className="w-3.5 h-3.5" />} label="Export" />
+            <PanelTab panel="info" icon={<Info className="w-3.5 h-3.5" />} label="Info" />
+          </div>
+
+          {/* Panel content */}
+          <div className="h-64 overflow-hidden">
+            <ScrollArea className="h-full">
+              {renderPanelContent()}
+            </ScrollArea>
+          </div>
+        </>
+      )}
     </div>
   );
 };
