@@ -10,9 +10,18 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
+    <TooltipProvider delayDuration={200}>
       <Toaster />
-      <Sonner />
+      <Sonner 
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: 'hsl(var(--card))',
+            border: '1px solid hsl(var(--border))',
+            color: 'hsl(var(--foreground))',
+          },
+        }}
+      />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
