@@ -5,8 +5,8 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>PixelForge - Simple Photo & Graphic Editor</title>
-        <meta name="description" content="A fast, browser-based photo and graphic editor. Resize, crop, and export images with an intuitive interface designed for designers and photographers." />
+        <title>FotoLab — Personal Photo & Graphic Editor</title>
+        <meta name="description" content="A fast, private browser-based studio for cropping, resizing, layering, and exporting images." />
       </Helmet>
       <EditorLayout />
     </>
