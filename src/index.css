@@ -2,53 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
-
 @layer base {
   :root {
-    /* Dark theme optimized for image editing */
-    --background: 240 10% 4%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 7%;
+    --foreground: 40 20% 94%;
 
-    --card: 240 10% 6%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 40 20% 94%;
 
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 40 20% 94%;
 
-    /* Cyan accent for creative tools */
-    --primary: 190 100% 50%;
-    --primary-foreground: 240 10% 4%;
+    --primary: 198 86% 54%;
+    --primary-foreground: 0 0% 7%;
 
-    --secondary: 240 10% 12%;
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 40 14% 88%;
 
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 55%;
+    --muted: 0 0% 17%;
+    --muted-foreground: 35 6% 58%;
 
     --accent: 190 100% 50%;
-    --accent-foreground: 240 10% 4%;
+    --accent-foreground: 0 0% 7%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 10% 18%;
-    --input: 240 10% 18%;
-    --ring: 190 100% 50%;
+    --border: 30 4% 20%;
+    --input: 30 4% 20%;
+    --ring: 198 86% 54%;
 
-    --radius: 0.5rem;
+    --radius: 0.375rem;
 
     /* Custom editor tokens */
-    --canvas-bg: 240 10% 8%;
-    --panel-bg: 240 10% 7%;
-    --panel-border: 240 10% 14%;
-    --toolbar-bg: 240 10% 10%;
-    --surface-elevated: 240 10% 12%;
-    --surface-hover: 240 10% 16%;
+    --canvas-bg: 0 0% 7%;
+    --panel-bg: 0 0% 10%;
+    --panel-border: 30 4% 20%;
+    --toolbar-bg: 0 0% 10%;
+    --surface-elevated: 0 0% 13%;
+    --surface-hover: 0 0% 17%;
     
     /* Accent variations */
-    --accent-muted: 190 70% 25%;
-    --accent-glow: 190 100% 60%;
+    --accent-muted: 198 45% 24%;
+    --accent-glow: 198 86% 62%;
     
     /* Success/Warning states */
     --success: 142 76% 36%;
@@ -56,14 +52,14 @@
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 0%;
 
-    --sidebar-background: 240 10% 6%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 190 100% 50%;
-    --sidebar-primary-foreground: 240 10% 4%;
-    --sidebar-accent: 240 10% 14%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 240 10% 14%;
-    --sidebar-ring: 190 100% 50%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 40 14% 88%;
+    --sidebar-primary: 198 86% 54%;
+    --sidebar-primary-foreground: 0 0% 7%;
+    --sidebar-accent: 0 0% 16%;
+    --sidebar-accent-foreground: 40 20% 94%;
+    --sidebar-border: 30 4% 20%;
+    --sidebar-ring: 198 86% 54%;
   }
 
   .light {
@@ -128,7 +124,13 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Geist', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    letter-spacing: 0;
   }
 
   /* Custom scrollbar for dark theme */
@@ -153,10 +155,7 @@
 
 @layer utilities {
   .panel-shadow {
-    box-shadow: 
-      0 0 0 1px hsl(var(--panel-border)),
-      0 4px 16px -4px hsla(0, 0%, 0%, 0.4),
-      0 8px 32px -8px hsla(0, 0%, 0%, 0.3);
+    box-shadow: 0 0 0 1px hsl(var(--panel-border));
   }
 
   .glow-accent {
@@ -182,6 +181,14 @@
 
   .accent-gradient {
     background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent-glow)) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

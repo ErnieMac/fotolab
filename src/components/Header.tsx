@@ -1,11 +1,12 @@
 import React from 'react';
 import { 
   Image, 
-  Sparkles, 
   Settings,
   ChevronDown,
   Moon,
-  Sun
+  Sun,
+  Aperture,
+  FolderOpen
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/store/editorStore';
@@ -32,20 +33,20 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="flex items-center justify-between h-12 px-4 bg-toolbar border-b border-border">
+    <header className="flex items-center justify-between h-12 px-3 bg-toolbar border-b border-border shrink-0">
       {/* Logo */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-5 min-w-0">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg accent-gradient flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-primary-foreground" />
+          <div className="w-7 h-7 rounded-md bg-primary flex items-center justify-center">
+            <Aperture className="w-4 h-4 text-primary-foreground" />
           </div>
-          <span className="text-sm font-semibold tracking-tight">PixelForge</span>
+          <span className="font-heading text-sm font-semibold">FotoLab</span>
         </div>
 
         {image && (
           <>
-            <span className="text-border">/</span>
-            <span className="text-sm text-muted-foreground truncate max-w-[200px]">
+            <span className="h-4 w-px bg-border" />
+            <span className="text-xs text-muted-foreground truncate max-w-[260px]">
               {image.name}
             </span>
           </>
@@ -54,6 +55,15 @@ export const Header: React.FC = () => {
 
       {/* Actions */}
       <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleNewProject}
+          className="h-8 gap-2 text-xs border-border bg-secondary/40"
+        >
+          <FolderOpen className="w-3.5 h-3.5" />
+          New project
+        </Button>
         <Button
           variant="ghost"
           size="icon"
@@ -77,11 +87,11 @@ export const Header: React.FC = () => {
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuItem onClick={handleNewProject}>
               <Image className="w-4 h-4 mr-2" />
-              New Project
+              New project
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem disabled className="text-muted-foreground">
-              <span className="text-xs">Version 1.0.0</span>
+              <span className="text-xs">FotoLab 1.0</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

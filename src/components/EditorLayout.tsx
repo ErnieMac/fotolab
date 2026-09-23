@@ -21,16 +21,12 @@ export const EditorLayout: React.FC = () => {
       <Header />
 
       {/* Main content */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 min-h-0 overflow-hidden">
         {/* Toolbar */}
-        {hasContent && (
-          <div className="flex items-start p-3">
-            <ToolbarModule />
-          </div>
-        )}
+        <ToolbarModule />
 
         {/* Canvas area */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 min-w-0 overflow-hidden border-x border-border">
           {layers.length > 0 ? (
             <LayerCanvas />
           ) : image ? (
