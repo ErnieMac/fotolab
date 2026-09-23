@@ -5,6 +5,7 @@ import {
   Download, 
   Info,
   Layers,
+  ChevronDown,
 } from 'lucide-react';
 import { useEditorStore, Panel } from '@/store/editorStore';
 import { useLayerStore } from '@/store/layerStore';
@@ -79,12 +80,25 @@ export const PropertiesPanel: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-full w-80 bg-panel border-l border-panel-border">
+    <aside className="flex flex-col h-full w-72 shrink-0 bg-panel">
+      <div className="border-b border-border p-3">
+        <div className="mb-2 flex items-center justify-between">
+          <span className="font-heading text-[10px] font-semibold uppercase text-muted-foreground">Navigator</span>
+          <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+        <div className="flex aspect-video items-center justify-center overflow-hidden rounded-sm border border-border bg-background">
+          {image ? (
+            <img src={image.src} alt="Document preview" className="h-full w-full object-contain" />
+          ) : (
+            <span className="text-[10px] text-muted-foreground">No document open</span>
+          )}
+        </div>
+      </div>
       {/* Layers section - always visible */}
       <div className="flex-1 flex flex-col min-h-0 border-b border-border">
         <div className="flex items-center gap-2 px-3 py-2 border-b border-border">
           <Layers className="w-4 h-4 text-muted-foreground" />
-          <span className="text-xs font-medium">Layers</span>
+          <span className="font-heading text-[10px] font-semibold uppercase text-muted-foreground">Layers</span>
         </div>
         <AddLayerToolbar />
         <div className="flex-1 min-h-0">
@@ -123,6 +137,6 @@ export const PropertiesPanel: React.FC = () => {
           </div>
         </>
       )}
-    </div>
+    </aside>
   );
 };

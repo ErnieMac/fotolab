@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Upload, Image as ImageIcon } from 'lucide-react';
+import { Upload, Image as ImageIcon, Clipboard } from 'lucide-react';
 import { useEditorStore, ImageData } from '@/store/editorStore';
 import { toast } from 'sonner';
 
@@ -66,19 +66,24 @@ export const UploadModule: React.FC = () => {
   }, [processFile]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full p-8">
+    <div className="relative flex flex-col items-center justify-center h-full w-full p-8 bg-canvas">
+      <div className="mb-8 text-center animate-fade-in">
+        <p className="mb-2 font-heading text-xs font-medium uppercase text-primary">Local photo editor</p>
+        <h1 className="font-heading text-2xl font-semibold text-foreground">Start with an image</h1>
+        <p className="mt-2 max-w-md text-sm text-muted-foreground">Your work stays in this browser. Open a file to crop, resize, compose, and export.</p>
+      </div>
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         className={`
           relative flex flex-col items-center justify-center
-          w-full max-w-xl aspect-video
-          rounded-xl border-2 border-dashed
-          transition-all duration-300 ease-out
+          w-full max-w-lg aspect-[16/9]
+          rounded-md border border-dashed
+          transition-all duration-150 ease-out
           ${isDragging 
             ? 'border-primary bg-primary/10 scale-[1.02]' 
-            : 'border-border bg-card hover:border-muted-foreground hover:bg-surface-elevated'
+            : 'border-border bg-card hover:border-primary/60 hover:bg-surface-elevated'
           }
         `}
       >
@@ -90,30 +95,30 @@ export const UploadModule: React.FC = () => {
         />
         
         <div className={`
-          flex items-center justify-center w-16 h-16 rounded-2xl mb-6
-          transition-all duration-300
+          flex items-center justify-center w-12 h-12 rounded-md mb-5
+          transition-all duration-150
           ${isDragging ? 'bg-primary text-primary-foreground scale-110' : 'bg-secondary text-muted-foreground'}
         `}>
           {isDragging ? (
-            <ImageIcon className="w-8 h-8" />
+            <ImageIcon className="w-6 h-6" />
           ) : (
-            <Upload className="w-8 h-8" />
+            <Upload className="w-6 h-6" />
           )}
         </div>
         
-        <h3 className="text-lg font-semibold mb-2">
-          {isDragging ? 'Drop your image here' : 'Upload an image'}
+        <h3 className="font-heading text-base font-semibold mb-2">
+          {isDragging ? 'Drop to open' : 'Open an image'}
         </h3>
         
         <p className="text-sm text-muted-foreground text-center mb-4">
-          Drag and drop or click to browse
+          Drag and drop, or click to browse
         </p>
         
         <div className="flex flex-wrap gap-2 justify-center">
           {['JPG', 'PNG', 'WEBP', 'SVG'].map((format) => (
             <span
               key={format}
-              className="px-2.5 py-1 text-xs font-medium rounded-md bg-secondary text-secondary-foreground"
+              className="px-2 py-0.5 text-[10px] font-medium rounded-sm bg-secondary text-secondary-foreground"
             >
               {format}
             </span>
@@ -121,9 +126,10 @@ export const UploadModule: React.FC = () => {
         </div>
       </div>
       
-      <p className="mt-6 text-xs text-muted-foreground">
-        Maximum file size: 50MB
-      </p>
+      <div className="mt-5 flex items-center gap-2 text-xs text-muted-foreground">
+        <Clipboard className="h-3.5 w-3.5" />
+        <span>Paste from clipboard · Maximum 50MB</span>
+      </div>
     </div>
   );
 };

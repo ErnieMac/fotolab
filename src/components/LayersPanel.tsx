@@ -54,7 +54,7 @@ const LayerItem: React.FC<LayerItemProps> = ({ layer, index }) => {
   return (
     <div
       className={cn(
-        'group flex items-center gap-2 px-2 py-1.5 rounded-md cursor-pointer transition-all',
+        'group flex items-center gap-2 px-2 py-2 rounded-sm cursor-pointer transition-all duration-150',
         isSelected
           ? 'bg-primary/20 border border-primary/40'
           : 'hover:bg-surface-hover border border-transparent',
@@ -172,7 +172,7 @@ export const LayersPanel: React.FC = () => {
 
       {/* Layers list */}
       <ScrollArea className="flex-1">
-        <div className="p-2 space-y-1">
+         <div className="p-2 space-y-1">
           {layers.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground text-xs">
               No layers yet. Add an image, shape, or text to get started.

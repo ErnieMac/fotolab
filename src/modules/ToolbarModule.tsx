@@ -105,9 +105,9 @@ export const ToolbarModule: React.FC = () => {
   const hasImage = !!image;
 
   return (
-    <div className="flex flex-col items-center py-3 px-1.5 bg-toolbar rounded-xl panel-shadow">
+    <aside className="flex w-14 shrink-0 flex-col items-center bg-toolbar py-3">
       {/* Main tools */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         <ToolButton
           tool="select"
           icon={<MousePointer2 className="w-4 h-4" />}
@@ -146,10 +146,10 @@ export const ToolbarModule: React.FC = () => {
         />
       </div>
 
-      <Separator className="my-3 w-6 bg-border" />
+      <Separator className="my-3 w-7 bg-border" />
 
       {/* Zoom controls */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         <ToolButton
           icon={<ZoomIn className="w-4 h-4" />}
           label="Zoom In"
@@ -173,10 +173,10 @@ export const ToolbarModule: React.FC = () => {
         />
       </div>
 
-      <Separator className="my-3 w-6 bg-border" />
+      <Separator className="my-3 w-7 bg-border" />
 
       {/* View options */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         <ToolButton
           icon={<Grid3X3 className="w-4 h-4" />}
           label="Toggle Grid"
@@ -195,10 +195,10 @@ export const ToolbarModule: React.FC = () => {
         />
       </div>
 
-      <Separator className="my-3 w-6 bg-border" />
+      <Separator className="my-3 w-7 bg-border" />
 
       {/* History */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5">
         <ToolButton
           icon={<Undo2 className="w-4 h-4" />}
           label="Undo"
@@ -214,6 +214,6 @@ export const ToolbarModule: React.FC = () => {
           onClick={redo}
         />
       </div>
-    </div>
+    </aside>
   );
 };
