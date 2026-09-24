@@ -1,73 +1,151 @@
-# Welcome to your Lovable project
+# FotoLab
 
-## Project info
+Project Title:
+Simplified Modular Photo & Graphic Editor Web App
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Project Description:
+Build a browser-based photo and graphic editor inspired by Photoshop but intentionally simplified. The app focuses only on the most commonly used tools by graphic designers and photographers. The goal is speed, clarity, and accessibility without overwhelming users. The system must be fully modular to support easy updates, maintainability, and future scalability.
 
-## How can I edit this code?
+Core Objectives:
+	•	Simple, intuitive UI for fast editing
+	•	High performance for large images
+	•	Fully modular architecture with isolated components
+	•	Clean separation between UI, logic, and processing
+	•	Scalable for future premium features and plugins
 
-There are several ways of editing your application.
+Target Users:
+	•	Graphic designers
+	•	Photographers
+	•	Content creators
+	•	Print-on-demand sellers
+	•	Social media managers
 
-**Use Lovable**
+⸻
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Core Features (MVP)
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Image Upload Module
+	•	Upload JPG, PNG, WEBP, SVG
+	•	Drag-and-drop support
+	•	Client-side validation for size and format
+	•	Preview original image metadata
 
-**Use your preferred IDE**
+2. Canvas & Workspace Module
+	•	Central canvas with zoom and pan
+	•	Grid and ruler toggle
+	•	Undo / redo history stack
+	•	Non-destructive editing workflow
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+3. Resize & Dimension Module
+	•	Resize by pixels, inches, centimeters, or percentages
+	•	Lock aspect ratio toggle
+	•	Preset dimensions (Instagram, YouTube, Print, Web, etc.)
+	•	Custom dimension input
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+4. DPI & Resolution Module
+	•	Change DPI for print and web
+	•	Auto suggestions (72, 144, 300 DPI)
+	•	Live preview of print quality impact
+	•	Metadata update without quality loss when possible
 
-Follow these steps:
+5. Crop & Scale Module
+	•	Freeform and fixed aspect ratio crop
+	•	Drag handles with snapping
+	•	Rotate and flip during crop
+	•	Scale image proportionally or freely
+
+6. Export Module
+	•	Export to JPG, PNG, WEBP, PDF
+	•	Quality slider
+	•	Background transparency toggle
+	•	Filename and metadata controls
+
+⸻
+
+Modular Architecture Requirements
+
+Frontend Modules:
+	•	UploadModule
+	•	CanvasModule
+	•	ResizeModule
+	•	CropModule
+	•	ResolutionModule
+	•	ExportModule
+	•	ToolbarModule
+	•	HistoryModule
+
+Each module must be independently maintainable and replaceable.
+
+State Management:
+	•	Centralized state store
+	•	Each module subscribes only to relevant state
+	•	Clear action-based updates
+
+Image Processing Layer:
+	•	Abstracted processing engine
+	•	Supports client-side processing first
+	•	Easy future swap to WebAssembly or server-side processing
+
+UI System:
+	•	Component-based UI
+	•	Tool panels load dynamically
+	•	Responsive design for desktop and tablet
+	•	Dark and light mode
+
+⸻
+
+Technical Constraints
+	•	Browser-based only
+	•	No login required for MVP
+	•	Fast load time
+	•	Minimal dependencies
+	•	Clean, documented codebase
+
+⸻
+
+Scalability & Future Expansion
+
+Design the system so these can be added without refactoring core logic:
+	•	Layer system
+	•	Text tool
+	•	Filters and presets
+	•	AI-powered enhancements
+	•	Plugin marketplace
+	•	User accounts and cloud storage
+
+⸻
+
+Output Requirements
+
+Generate:
+	•	App architecture overview
+	•	Folder structure
+	•	Core component definitions
+	•	State management approach
+	•	Example code stubs for each module
+	•	Clear comments explaining extension points
+
+⸻
+
+Build this app as a clean, modern, production-ready MVP optimized for clarity, speed, and modularity.
+
+This project was built with [Lovable](https://lovable.dev).
+
+## Build with Lovable
+
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/2eece38c-72d9-4aef-90fa-04d427190011).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
